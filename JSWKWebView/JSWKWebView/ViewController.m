@@ -61,6 +61,11 @@
     preference.javaScriptCanOpenWindowsAutomatically = YES;
     config.preferences = preference;
 
+    /// 注册 cookie
+    NSString *cookieSource = [NSString stringWithFormat:@"document.cookie = 'name_test=%@ ,key=%@';", @"Config setting",@""];
+    WKUserScript *cookieScript = [[WKUserScript alloc] initWithSource:cookieSource injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:NO];
+    [config.userContentController addUserScript:cookieScript];
+
 
 
 //    [config.userContentController removeScriptMessageHandlerForName:@"Back"];
